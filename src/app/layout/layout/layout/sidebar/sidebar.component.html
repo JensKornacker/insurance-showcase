@@ -1,0 +1,30 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
+  <div class="list-group mt-5">
+
+    <a [routerLink]="['/task-list']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <fa-icon [icon]="faTachometerAlt"></fa-icon>&nbsp;
+      <span>{{ 'Aufgaben' }}</span>
+    </a>
+    <a [routerLink]="['/workflow-list']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <fa-icon [icon]="faBars"></fa-icon>&nbsp;
+      <span>{{ 'Vorgänge' }}</span>
+    </a>
+    <a [routerLink]="['/integrate-react']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <fa-icon [icon]="faPowerOff"></fa-icon>&nbsp;
+      <span>{{ 'React' }}</span>
+    </a>
+
+    <div class="header-fields">
+      <div class="nested-menu">
+        <a class="list-group-item" (click)="addExpandClass('languages')">
+          <span><i class="fa fa-language"></i>&nbsp; {{ 'Language' }} <b class="caret"></b></span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+  <div class="toggle-button" [ngClass]="{collapsed: collapsed}" (click)="toggleCollapsed()">
+    <i class="fa fa-fw fa-angle-double-{{collapsed?'right':'left'}}"></i>&nbsp;
+    <span>{{ 'Collapse Sidebar' }}</span>
+  </div>
+</nav>
