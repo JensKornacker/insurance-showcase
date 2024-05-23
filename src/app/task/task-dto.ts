@@ -5,7 +5,12 @@ export type Variable = {
 
 export interface TaskDto {
   id: string;
+  taskId: string;
   name: string;
+  title: string;
+  moduleId: string;
+  url: string;
+  description: string;
   processName: string;
   creationTime: string;
   completionTime?: string | null;
@@ -17,4 +22,7 @@ export interface TaskDto {
   formKey?: string | null;
   processDefinitionId?: string;
   taskDefinitionId?: string;
+  additionalInfo: any;
+  completeEndpoint: string;
+  aggregateId: string,
 }

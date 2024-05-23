@@ -4,7 +4,7 @@ import {ITaskRequest} from "../task-list/task-list.component";
 import {Observable} from "rxjs";
 import {TaskDto} from "../task-dto";
 import {environment} from "../../../environments/environment";
-import {IRideCharged} from "../task.component";
+import {ICompleteTaskEvent} from "../task.component";
 
 @Injectable({
   providedIn: 'root'
@@ -19,14 +19,16 @@ export class TaskService {
     private http: HttpClient
   ) { }
 
-  completeTask(rideId: string | null | undefined, rideCharged: IRideCharged): Observable<string> {
-    return this.http.post(this.api_url + "/api/v1/ride/" + rideId + "/charged", rideCharged, {responseType: 'text'});
+  getTaskList(): Observable<TaskDto[]> {
+    return this.http.get<TaskDto[]>(this.task_api + '/tasks');
   }
 
-  getTaskList(taskRequest: ITaskRequest): Observable<TaskDto[]> {
-    return this.http.post<TaskDto[]>(
-      this.task_api + '/v1/tasks/search', taskRequest,
-      {headers: {"Cookie": this.auth }});
+  getTask(taskId: string): Observable<TaskDto> {
+    return this.http.get<TaskDto>(this.task_api + '/tasks/' + taskId);
+  }
+
+  complete(completeTask: ICompleteTaskEvent, url: string, endpointUrl: string): Observable<string> {
+    return this.http.post(url + endpointUrl, completeTask, {responseType: 'text'});
   }
 
 }

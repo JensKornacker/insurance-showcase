@@ -10,7 +10,6 @@ import {HomeComponent} from './home/home.component';
 import {NgOptimizedImage} from "@angular/common";
 import {WorkflowComponent} from "./workflow/workflow.component";
 import {HttpClientModule} from "@angular/common/http";
-import {ReactComponentDirective} from "./shared/react-component.directive";
 import {WorkflowListComponent} from './workflow/workflow-list/workflow-list.component';
 
 @NgModule({
@@ -27,8 +26,7 @@ import {WorkflowListComponent} from './workflow/workflow-list/workflow-list.comp
     AppRoutingModule,
     FontAwesomeModule,
     NgOptimizedImage,
-    HttpClientModule,
-    ReactComponentDirective
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

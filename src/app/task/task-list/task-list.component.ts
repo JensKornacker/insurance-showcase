@@ -1,39 +1,31 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Subscription} from "rxjs";
-import {ReactComponentDirective} from "../../shared/react-component.directive";
+import {of, Subscription} from "rxjs";
 import {CommonModule} from "@angular/common";
 import {NavigateService} from "../../shared/navigate.service";
+import {TaskService} from "../service/task.service";
+import {TaskDto} from "../task-dto";
+import {RouterLink} from "@angular/router";
 
 export interface ITaskRequest {
   state: string;
   assigned?: boolean;
 }
 
-const translations = {
-  "title.long": 'Aufgaben',
-  "title.short": 'Aufgaben',
-  "total": "Anzahl:",
-  "no": "Nr.",
-  "name": "Aufgabe",
-  "module-unknown": "Unbekanntes Modul",
-  "retry-loading-module-hint": "Leider ist derzeit kein Zugriff auf die Aufgabe möglich!",
-  "retry-loading-module-": "Laden nochmals probieren...",
-  "typeofitem_unsupported": "Typfehler"
-}
-
 @Component({
   standalone: true,
   selector: 'app-task-list',
-  imports: [ReactComponentDirective, CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.scss']
 })
 export class TaskListComponent implements OnInit, OnDestroy {
 
   private subscription$: Subscription[] = [];
+  taskList: TaskDto[];
 
   constructor(
-    private navigateService: NavigateService
+    private navigateService: NavigateService,
+    private taskService: TaskService,
   ) {
   }
 
@@ -44,8 +36,20 @@ export class TaskListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.getTaskList();
   }
 
+  getTaskList() {
+    this.subscription$.push(
+      this.taskService.getTaskList().subscribe({
+        next: value => {
+          this.taskList = value;
+          console.log(value);
+          console.log(this.taskList);
+        }
+      })
+    )
+  }
 
-
+  protected readonly of = of;
 }
