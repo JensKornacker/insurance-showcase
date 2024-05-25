@@ -1,6 +1,9 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {NavigationEnd, Router} from "@angular/router";
-import {faCoffee, faUser, faBars, faPowerOff, faTachometerAlt} from '@fortawesome/free-solid-svg-icons';
+import {faCoffee, faUser, faBars, faPowerOff, faTachometerAlt, faPersonCircleMinus} from '@fortawesome/free-solid-svg-icons';
+import {faGhost} from "@fortawesome/free-solid-svg-icons/faGhost";
+import {faListCheck} from "@fortawesome/free-solid-svg-icons/faListCheck";
+import {faNetworkWired} from "@fortawesome/free-solid-svg-icons/faNetworkWired";
 
 @Component({
   selector: 'app-sidebar',
@@ -58,4 +61,8 @@ export class SidebarComponent implements OnInit{
     }
   }
 
+  protected readonly faPersonCircleMinus = faPersonCircleMinus;
+  protected readonly faGhost = faGhost;
+  protected readonly faListCheck = faListCheck;
+  protected readonly faNetworkWired = faNetworkWired;
 }

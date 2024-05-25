@@ -2,16 +2,24 @@
   <div class="list-group mt-5">
 
     <a [routerLink]="['/task-list']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-      <fa-icon [icon]="faTachometerAlt"></fa-icon>&nbsp;
+      <fa-icon [icon]="faListCheck"></fa-icon>&nbsp;
       <span>{{ 'Aufgaben' }}</span>
     </a>
     <a [routerLink]="['/workflow-list']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-      <fa-icon [icon]="faBars"></fa-icon>&nbsp;
+      <fa-icon [icon]="faNetworkWired"></fa-icon>&nbsp;
       <span>{{ 'Vorgänge' }}</span>
     </a>
     <a [routerLink]="['/integrate-react']" [routerLinkActive]="['router-link-active']" class="list-group-item">
       <fa-icon [icon]="faPowerOff"></fa-icon>&nbsp;
       <span>{{ 'React' }}</span>
+    </a>
+    <a [routerLink]="['/create-customer']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <fa-icon [icon]="faPersonCircleMinus" />&nbsp;
+      <span>{{ 'Create Customer' }}</span>
+    </a>
+    <a [routerLink]="['/customers']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <fa-icon [icon]="faGhost" />&nbsp;
+      <span>{{ 'Customers' }}</span>
     </a>
 
     <div class="header-fields">

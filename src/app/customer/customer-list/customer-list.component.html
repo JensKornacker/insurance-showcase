@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col">
+    <form>
+      @if (!customers) {
+        ... Loading
+      }
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">firstname</th>
+          <th scope="col">lastname</th>
+        </tr>
+        </thead>
+        <tbody>
+          @for (customer of customers; track customer) {
+            <tr>
+              <th scope="row"><a [routerLink]="['/customers', customer.id]">link</a></th>
+              <th scope="row">{{ customer.firstname }}</th>
+              <th scope="row">{{ customer.lastname }}</th>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
