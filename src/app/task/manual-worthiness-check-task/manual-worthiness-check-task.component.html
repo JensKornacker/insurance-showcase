@@ -1,29 +1,81 @@
-<p>manual-worthiness-check-task works!</p>
-<div class="card">
-  <div class="card-body">
-    <div class="row">
-      <div class="col-md-6">
-        {{ additionalInfo?.worthiness }}
-      </div>
-      <div class="col-md-4">
-        <div class="form-check">
-          <input class="form-check-input"
-                 type="checkbox"
-                 [(ngModel)]="isChecked"
-                 id="flexCheckDefault">
-          <label class="form-check-label" for="flexCheckDefault">
-            worthy?
-          </label>
+
+<div class="row pt-5">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            {{ additionalInfo?.worthiness }}
+          </div>
+          <div class="col-md-4">
+            <div class="form-check">
+              <input class="form-check-input"
+                     type="checkbox"
+                     [(ngModel)]="isChecked"
+                     id="flexCheckDefault">
+              <label class="form-check-label" for="flexCheckDefault">
+                worthy?
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row pt-3">
+          <div class="col-md-6">
+            <button class="btn btn-sm btn-outline-danger" (click)="checkBoxValue()">check Value</button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="row pt-3">
-      <div class="col-md-6">
-        <button class="btn btn-sm btn-outline-danger" (click)="checkBoxValue()">check Value</button>
+
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            Customer Name:
+          </div>
+          <div class="col">
+            {{additionalInfo.customer}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            Email:
+          </div>
+          <div class="col">
+            {{additionalInfo.customerEmail}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            Phone Number:
+          </div>
+          <div class="col">
+            {{additionalInfo.customerPhoneNumber}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            Gender:
+          </div>
+          <div class="col">
+            {{additionalInfo.customerGender}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            Date of birth:
+          </div>
+          <div class="col">
+            {{additionalInfo.customerDateOfBirth}}
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
 <div class="row pt-3">
   <div class="col-md-4">
     <button class="btn btn-sm btn-outline-info" (click)="complete()">Complete Task</button>
