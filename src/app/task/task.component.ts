@@ -3,24 +3,27 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {FormsModule} from "@angular/forms";
 import {TaskService} from "./service/task.service";
-import {JsonPipe, KeyValuePipe, NgForOf, NgIf} from "@angular/common";
+import {DatePipe, JsonPipe, KeyValuePipe, NgForOf} from "@angular/common";
 import {SideLayoutService} from "../shared/side-layout.service";
 import {TaskDto} from "./task-dto";
 import {
   ManualWorthinessCheckTaskComponent
 } from "./manual-worthiness-check-task/manual-worthiness-check-task.component";
+import {
+  ManualRiskAssessmentCheckTaskComponent
+} from "./manual-risk-assessment-check-task/manual-risk-assessment-check-task.component";
+import {NgbDropdown, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle} from "@ng-bootstrap/ng-bootstrap";
 
-export interface ICompleteTaskEvent {
+export interface IAddAssignee {
+  username: string;
   taskId: string;
-  aggregateId: string;
-  manualCreditCheckOutcome: string;
 }
 
 @Component({
   standalone: true,
   selector: 'app-task',
   templateUrl: './task.component.html',
-  imports: [FormsModule, JsonPipe, KeyValuePipe, NgForOf, ManualWorthinessCheckTaskComponent],
+  imports: [FormsModule, JsonPipe, KeyValuePipe, NgForOf, ManualWorthinessCheckTaskComponent, ManualRiskAssessmentCheckTaskComponent, NgbDropdown, NgbDropdownMenu, NgbDropdownItem, NgbDropdownToggle, DatePipe],
   styleUrls: ['./task.component.scss']
 })
 export class TaskComponent implements OnInit, OnDestroy {
@@ -32,6 +35,7 @@ export class TaskComponent implements OnInit, OnDestroy {
   task: TaskDto;
   amount: number | undefined;
   additionalInfo: any;
+  users: string[] = ["Jens Kornacker", "Gerhard Wieshammer", "Andi Gegendorfer"]
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -65,6 +69,19 @@ export class TaskComponent implements OnInit, OnDestroy {
     })
   }
 
-
-
+  addAssignee(username: string) {
+    let addAssignee: IAddAssignee = {
+      username: username,
+      taskId: this.task.taskId,
+    }
+    console.log(addAssignee);
+    this.subscription$.push(
+      this.taskService.addAssignee(addAssignee).subscribe({
+        next: value => {
+          this.task = value;
+        },
+        error: err => {}
+      })
+    )
+  }
 }

@@ -1,19 +1,63 @@
 @defer {
   <h3>{{ task.title }}</h3>
   <div class="row">
-    <div class="col-md-4">
-      <div class="card">
-        <div class="card-body">
-          {{ task.description }}
+    <div class="col-md-9">
+
+      <div>
+        <div class="row">
+          <div class="col-md-12">
+            @if (task.title === 'Manual Worthiness Check') {
+              <app-manual-worthiness-check-task [task]="task"
+                                                [additionalInfo]="task.additionalInfo"/>
+            } @else if (task.title === 'Manual Risk Assessment') {
+              <app-manual-risk-assessment-check-task [task]="task"
+                                                     [additionalInfo]="task.additionalInfo"/>
+            }
+          </div>
         </div>
       </div>
+
     </div>
-  </div>
-  <div>
-    <div class="row">
-      <div class="col-md-12">
-        <app-manual-worthiness-check-task [task]="task"
-                                          [additionalInfo]="task.additionalInfo"/>
+
+    <div class="col-md-3 pt-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              {{ task.description }}
+            </div>
+          </div>
+          <div class="row pt-3">
+            <div class="col">
+              Assignee:
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              {{ task.assignee }} <br>
+                <div ngbDropdown class="d-inline-block">
+                  <button type="button" class="btn btn-sm btn-close-white" id="dropdownBasic1" ngbDropdownToggle>
+                    <small>+ Add Assignee</small>
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    @for (user of users; track user) {
+                      <button ngbDropdownItem
+                              class="dropdown-style"
+                              (click)="addAssignee(user)">
+                        {{ user }}
+                      </button>
+                    }
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="row pt-4">
+            <div class="col">
+              Created At: <br>
+              {{ task.createdAt | date }}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

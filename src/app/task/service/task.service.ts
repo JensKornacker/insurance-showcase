@@ -4,7 +4,8 @@ import {ITaskRequest} from "../task-list/task-list.component";
 import {Observable} from "rxjs";
 import {TaskDto} from "../task-dto";
 import {environment} from "../../../environments/environment";
-import {ICompleteTaskEvent} from "../task.component";
+import {IAddAssignee} from "../task.component";
+import {ICompleteTaskEvent} from "../ICompleteTaskEvent";
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,10 @@ export class TaskService {
 
   complete(completeTask: ICompleteTaskEvent, url: string, endpointUrl: string): Observable<string> {
     return this.http.post(url + endpointUrl, completeTask, {responseType: 'text'});
+  }
+
+  addAssignee(addAssignee: IAddAssignee): Observable<TaskDto> {
+    return this.http.post<TaskDto>(this.task_api + '/tasks/add-assignee', addAssignee);
   }
 
 }

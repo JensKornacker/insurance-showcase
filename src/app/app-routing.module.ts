@@ -9,6 +9,7 @@ import {NewSignalComponent} from "./course/new-signal/new-signal.component";
 import {CreateCustomerComponent} from "./customer/create-customer/create-customer.component";
 import {CustomerListComponent} from "./customer/customer-list/customer-list.component";
 import {CustomerComponent} from "./customer/customer/customer.component";
+import {RequestInsuranceComponent} from "./insurance/request-insurance/request-insurance.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'create-customer', component: CreateCustomerComponent},
   {path: 'customers', component: CustomerListComponent},
   {path: 'customers/:id', component: CustomerComponent},
+  {path: 'request-insurance/:customerId/:insuranceType', component: RequestInsuranceComponent},
 ];
 
 @NgModule({

@@ -1,4 +1,4 @@
-
+<app-customer-card [additionalInfo]="additionalInfo" />
 <div class="row pt-5">
   <div class="col-md-6">
     <div class="card">
@@ -27,52 +27,6 @@
       </div>
     </div>
 
-  </div>
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <div class="col">
-            Customer Name:
-          </div>
-          <div class="col">
-            {{additionalInfo.customer}}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            Email:
-          </div>
-          <div class="col">
-            {{additionalInfo.customerEmail}}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            Phone Number:
-          </div>
-          <div class="col">
-            {{additionalInfo.customerPhoneNumber}}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            Gender:
-          </div>
-          <div class="col">
-            {{additionalInfo.customerGender}}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            Date of birth:
-          </div>
-          <div class="col">
-            {{additionalInfo.customerDateOfBirth}}
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 

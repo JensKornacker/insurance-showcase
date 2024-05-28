@@ -18,21 +18,76 @@
         <input id="gender" type="text" [(ngModel)]="gender" class="form-control">
       </div>
     </div>
-    <div class="row pt-3">
-      <div class="col">
-        <label for="dateOfBirth">Date of Birth</label>
-        <input id="dateOfBirth" type="text" [(ngModel)]="dateOfBirth" class="form-control">
-      </div>
+
+    <!-- ##################### -->
+    <div class="pt-3">
+
+      <form class="row row-cols-sm-auto">
+        <div class="col-12">
+          <label for="dateOfBirth">Date of birth</label>
+          <div class="input-group">
+            <input
+              id="dateOfBirth"
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              name="dp"
+              [(ngModel)]="model"
+              ngbDatepicker
+              #d="ngbDatepicker"
+            />
+            <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
+          </div>
+        </div>
+      </form>
+
+      <hr/>
+
+
     </div>
+    <!-- ##################### -->
     <div class="row pt-3">
       <div class="col">
         <label for="email">Email</label>
-        <input id="email" type="text" [(ngModel)]="email" class="form-control">
+        <input id="email" type="email" [(ngModel)]="email" class="form-control">
       </div>
     </div>
+
+    <div class="row pt-3">
+      <div class="col">
+        <label for="street">street</label>
+        <input id="street" type="text" [(ngModel)]="street" class="form-control">
+      </div>
+    </div>
+
+    <div class="row pt-3">
+      <div class="col">
+        <label for="zip-code">zipCode</label>
+        <input id="zip-code" type="text" [(ngModel)]="zipCode" class="form-control">
+      </div>
+    </div>
+
+    <div class="row pt-3">
+      <div class="col">
+        <label for="city">city</label>
+        <input id="city" type="text" [(ngModel)]="city" class="form-control">
+      </div>
+    </div>
+
+    <div class="row pt-3">
+      <div class="col">
+        <label for="country">country</label>
+        <input id="country" type="text" [(ngModel)]="country" class="form-control">
+      </div>
+    </div>
+
     <div class="row pt-3">
       <div class="col">
         <button class="btn btn-sm btn-outline-success" (click)="create()">create</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <small><i>Alle Felder sind Pflichtfelder!</i></small>
       </div>
     </div>
   </div>

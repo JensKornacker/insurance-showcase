@@ -1,40 +1,44 @@
-<div class="row">
-  <div class="col-md-4">
-    <h3>{{ customer.firstname + ' ' + customer.lastname }}</h3>
-  </div>
-  <div class="col-md-4">
-    <div class="row">
-      New Insurance? <br>
-      <div class="form-check">
-        <input id="new_insurance"
-               type="checkbox"
-               [(ngModel)]="isChecked"
-               class="form-check-input">
-        <label class="form-check-label" for="new_insurance">
-          <b>{{ isChecked ? 'yes' : 'no' }}</b>
-        </label>
-      </div>
+@defer {
+  <div class="row">
+    <div class="col-md-4">
+      <h3>{{ customer.firstname + ' ' + customer.lastname }}</h3>
     </div>
-    @if (isChecked) {
-      <div class="row pt-5">
-        <div class="col">
-          Insurance Type
-          <select class="form-select" aria-label="Default select example" [(ngModel)]="type" (change)="new_insurance()">
-            <option value="LIABILITY_INSURANCE">Liability</option>
-            <option value="HOUSEHOLD_INSURANCE">Household</option>
-          </select>
+    <div class="col-md-4">
+      <div class="row">
+        New Insurance? <br>
+        <div class="form-check">
+          <input id="new_insurance"
+                 type="checkbox"
+                 [(ngModel)]="isChecked"
+                 class="form-check-input">
+          <label class="form-check-label" for="new_insurance">
+            <b>{{ isChecked ? 'yes' : 'no' }}</b>
+          </label>
         </div>
       </div>
-      <div class="row pt-3">
-        <div class="col">
-          <button class="btn btn-sm btn-outline-dark"
-                  (click)="request_insurance()"
-                  [disabled]="type === undefined">
-            Request Insurance
-          </button>
+      @if (isChecked) {
+        <div class="row pt-5">
+          <div class="col">
+            Insurance Type
+            <select class="form-select" aria-label="Default select example" [(ngModel)]="type"
+                    (change)="new_insurance()">
+              <option value="LIABILITY_INSURANCE">Liability</option>
+              <option value="HOUSEHOLD_INSURANCE">Household</option>
+            </select>
+          </div>
         </div>
-      </div>
-    }
+        <div class="row pt-3">
+          <div class="col">
+            <button class="btn btn-sm btn-outline-dark"
+                    (click)="request_insurance()"
+                    [disabled]="type === undefined">
+              Request Insurance
+            </button>
+          </div>
+        </div>
+      }
+    </div>
   </div>
-</div>
-
+} @placeholder {
+  ... Loading
+}

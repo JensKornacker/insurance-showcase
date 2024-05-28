@@ -12,7 +12,7 @@ export interface TaskDto {
   url: string;
   description: string;
   processName: string;
-  creationTime: string;
+  createdAt: string;
   completionTime?: string | null;
   assignee?: string | null;
   variables?: Variable[];

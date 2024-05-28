@@ -1,0 +1,90 @@
+<h3>Neue Hausratsversicherung</h3>
+<div class="row pt-3">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4">
+            Kunde:
+          </div>
+          <div class="col-md-6">
+            {{customer.firstname + ' ' + customer.lastname}} <br>
+            {{customer.dateOfBirth}} <br>
+            {{customer.gender}} <br>
+            {{customer.customerNumber}} <br>
+            {{customer.street}} <br>
+            {{customer.zipCode + ' ' + customer.city}} <br>
+            {{customer.country}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row pt-3">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        Tarif und Leistungen
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4">
+            Versicherungssumme:
+          </div>
+          <div class="col-md-6">
+            1000000.-€
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+
+          </div>
+          <div class="col-md-6"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row pt-3">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        Risikozuschläge
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4">
+            Vermurungsgefahr:
+          </div>
+          <div class="col-md-2">
+            <input id="mudslide" type="checkbox" class="form-check-input" [(ngModel)]="mudslide_risk">
+          </div>
+          <div class="col-md-6">
+            @if (mudslide_risk) {
+              50.-€
+            }
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            Hochwassergefahr
+          </div>
+          <div class="col-md-2">
+            <input id="flood" type="checkbox" class="form-check-input" [(ngModel)]="flood_risk">
+          </div>
+          <div class="col-md-6">
+            @if (flood_risk) {
+              100.-
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row pt-3">
+  <div class="col-md-6">
+    <button class="btn btn-sm btn-outline-info" (click)="request_insurance()">request insurance</button>
+  </div>
+</div>

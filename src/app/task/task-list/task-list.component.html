@@ -7,16 +7,20 @@
       <thead>
       <tr>
         <th scope="col">#</th>
+        <th scope="col">Customer</th>
         <th scope="col">title</th>
         <th scope="col">link</th>
+        <th scope="col">Assignee</th>
       </tr>
       </thead>
       <tbody>
         @for (task of taskList; track task.taskId) {
           <tr>
             <th scope="row">{{task.taskId}}</th>
+            <th scope="row">{{task.additionalInfo.customer}}</th>
             <th scope="row">{{task.title}}</th>
             <th scope="row"><a [routerLink]="['/tasks', task.taskId]">link</a> </th>
+            <th scope="row">{{task.assignee}}</th>
           </tr>
         }
       </tbody>
