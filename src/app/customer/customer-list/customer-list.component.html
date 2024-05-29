@@ -1,4 +1,6 @@
-<div class="row">
+<h3>Customers</h3>
+@defer {
+<div class="row pt-3">
   <div class="col">
     <form>
       @if (!customers) {
@@ -25,3 +27,6 @@
     </form>
   </div>
 </div>
+} @placeholder {
+  ... Loading
+}

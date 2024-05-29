@@ -10,4 +10,5 @@ export interface Customer {
   city?: string;
   country?: string;
   customerNumber?: number;
+  phoneNumber?: string;
 }

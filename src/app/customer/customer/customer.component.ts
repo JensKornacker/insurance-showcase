@@ -55,4 +55,5 @@ export class CustomerComponent implements OnInit, OnDestroy {
   request_insurance() {
     this.router.navigate(['/request-insurance', this.customer.id, this.type]).then();
   }
+
 }
