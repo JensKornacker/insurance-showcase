@@ -4,12 +4,15 @@ import {Subscription} from "rxjs";
 import {CustomerService} from "../customer.service";
 import {Customer} from "../customer";
 import {FormsModule} from "@angular/forms";
+import {JsonPipe, KeyValuePipe} from "@angular/common";
 
 @Component({
   selector: 'app-customer',
   standalone: true,
   imports: [
-    FormsModule
+    FormsModule,
+    JsonPipe,
+    KeyValuePipe
   ],
   templateUrl: './customer.component.html',
   styleUrl: './customer.component.scss'

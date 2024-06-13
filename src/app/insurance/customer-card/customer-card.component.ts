@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {Customer} from "../../customer/customer";
 
 @Component({
   selector: 'app-customer-card',
@@ -9,6 +10,6 @@ import {Component, Input} from '@angular/core';
 })
 export class CustomerCardComponent {
 
-  @Input() additionalInfo: any;
+  @Input() customer: Customer;
 
 }

@@ -2,9 +2,7 @@ import {Component, inject, Input, OnDestroy, OnInit} from '@angular/core';
 import {TaskDto} from "../task-dto";
 import {Subscription} from "rxjs";
 import {JsonPipe} from "@angular/common";
-import {CustomerCardComponent} from "../customer-card/customer-card.component";
 import {FormsModule} from "@angular/forms";
-import {ICompleteTaskEvent} from "../ICompleteTaskEvent";
 import {TaskService} from "../service/task.service";
 import {Router} from "@angular/router";
 
@@ -13,7 +11,6 @@ import {Router} from "@angular/router";
   standalone: true,
   imports: [
     JsonPipe,
-    CustomerCardComponent,
     FormsModule
   ],
   templateUrl: './manual-risk-assessment-check-task.component.html',
@@ -37,25 +34,26 @@ export class ManualRiskAssessmentCheckTaskComponent implements OnInit, OnDestroy
     }
   }
 
-  complete() {
-    this.checkApprovalCheckBox();
-    let completeTask: ICompleteTaskEvent = {
-      taskId: this.task.taskId,
-      aggregateId: this.task.aggregateId,
-      manualCreditCheckOutcome: null,
-      manualRiskAssessmentOutcome: this.manualRiskAssessmentOutcome
-    }
-    this.subscription$.push(
-      this.taskService.complete(completeTask, this.task.url, this.task.completeEndpoint).subscribe({
-        next: completeTask => {
-          this.router.navigate(['/task-list']).then();
-        },
-        error: error => {
-          console.log(error);
-        }
-      })
-    )
-  }
+  // complete() {
+  //   this.checkApprovalCheckBox();
+  //   let completeTask: CompleteTaskEvent = {
+  //     taskId: this.task.taskId,
+  //     aggregateId: this.task.aggregateId,
+  //     completeVars: null,
+  //     manualCreditCheckOutcome: null,
+  //     manualRiskAssessmentOutcome: this.manualRiskAssessmentOutcome
+  //   }
+  //   this.subscription$.push(
+  //     this.taskService.complete(completeTask, this.task.url, this.task.completeEndpoint).subscribe({
+  //       next: completeTask => {
+  //         this.router.navigate(['/task-list']).then();
+  //       },
+  //       error: error => {
+  //         console.log(error);
+  //       }
+  //     })
+  //   )
+  // }
 
   ngOnDestroy(): void {
     this.subscription$.forEach(subscription => {

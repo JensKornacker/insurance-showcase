@@ -1,11 +1,10 @@
-import { Injectable } from '@angular/core';
-import {HttpClient, HttpResponse, HttpStatusCode} from "@angular/common/http";
-import {ITaskRequest} from "../task-list/task-list.component";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {TaskDto} from "../task-dto";
 import {environment} from "../../../environments/environment";
 import {IAddAssignee} from "../task.component";
-import {ICompleteTaskEvent} from "../ICompleteTaskEvent";
+import {CompleteTaskEvent} from "../CompleteTaskEvent";
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +27,7 @@ export class TaskService {
     return this.http.get<TaskDto>(this.task_api + '/tasks/' + taskId);
   }
 
-  complete(completeTask: ICompleteTaskEvent, url: string, endpointUrl: string): Observable<string> {
+  complete(completeTask: CompleteTaskEvent, url: string, endpointUrl: string): Observable<string> {
     return this.http.post(url + endpointUrl, completeTask, {responseType: 'text'});
   }
 

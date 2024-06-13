@@ -1,9 +1,77 @@
 <h3>Neue Haftpflichtversicherung</h3>
-<div class="row">
-  <div class="col-md-1">
-    Kunde:
-  </div>
+<div class="row pt-3">
   <div class="col-md-6">
-    {{customer.firstname + ' ' + customer.lastname}} <br>
+    <app-customer-card [customer]="customer" />
+  </div>
+</div>
+<div class="row pt-3">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        Tarif und Leistungen
+      </div>
+      <div class="card-body">
+        <div class="row pt-2">
+          <div class="col-md-4">
+            Versicherungssumme:
+          </div>
+          <div class="col-md-2"></div>
+          <div class="col-md-6">
+            {{ insuranceSum }} <br>
+            <input type="range" [(ngModel)]="insuranceSumSteps" (ngModelChange)="volumeChange($event)"
+                   class="form-range" min="1" max="3" step="1" id="insuranceSum">
+          </div>
+        </div>
+        <div class="row pt-2">
+          <div class="col-md-4">
+            monatliches Einkommen:
+          </div>
+          <div class="col-md-2">
+            <input id="sufficientIncome" type="checkbox" class="form-check-input" [(ngModel)]="sufficientIncome">
+          </div>
+          <div class="col-md-6">
+            @if (sufficientIncome) {
+              > € 5000.- (passt)
+            } @else {
+              < € 5000.- (schau ma uns genauer an)
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row pt-3">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        Versicherungsschutz
+      </div>
+      <div class="card-body">
+        <div class="row pt-2">
+          <div class="col">
+            @for (cover of coverings; track cover) {
+              <div class="row">
+                <div class="col">
+                  {{ cover }}
+                </div>
+                <div class="col">
+                  <input type="radio" [value]="cover" name="coverings" [(ngModel)]="chosenCoverage">
+                </div>
+              </div>
+            }
+          </div>
+          <div class="col">
+            {{chosenCoverage}}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row pt-3">
+  <div class="col-md-6">
+    <button class="btn btn-sm btn-outline-info" (click)="request_insurance()">request insurance</button>
   </div>
 </div>

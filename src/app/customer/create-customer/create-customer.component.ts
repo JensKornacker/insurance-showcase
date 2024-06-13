@@ -32,6 +32,7 @@ export class CreateCustomerComponent implements OnDestroy{
   zipCode: string;
   city: string;
   country: string;
+  phoneNumber: string;
   private subscription: Subscription[] = [];
   model: NgbDateStruct;
 
@@ -45,7 +46,8 @@ export class CreateCustomerComponent implements OnDestroy{
       street: this.street,
       zipCode: this.zipCode,
       city: this.city,
-      country: this.country
+      country: this.country,
+      phoneNumber: this.phoneNumber,
     }
     this.subscription.push(
       this.customerService.createCustomer(customer).subscribe({

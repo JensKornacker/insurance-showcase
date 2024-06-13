@@ -1,33 +1,55 @@
 <div class="container-fluid">
+
+  @if (!taskList) {
+    ... Loading
+  }
   <form>
-    @if (!taskList) {
-      ... Loading
-    }
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Customer</th>
-        <th scope="col">title</th>
-        <th scope="col">link</th>
-        <th scope="col">Assignee</th>
-      </tr>
-      </thead>
-      <tbody>
-        @for (task of taskList; track task.taskId) {
-          <tr>
-            <th scope="row">{{task.taskId}}</th>
-            <th scope="row">{{task.additionalInfo.customer}}</th>
-            <th scope="row">{{task.title}}</th>
-            <th scope="row"><a [routerLink]="['/tasks', task.taskId]">link</a> </th>
-            <th scope="row">{{task.assignee}}</th>
-          </tr>
-        }
-      </tbody>
-    </table>
+    <div class="m-3 row">
+      <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Filter:</label>
+      <div class="col-xs-3 col-sm-auto">
+        <input id="table-filtering-search" class="form-control" type="text" [formControl]="filter"/>
+      </div>
+    </div>
   </form>
-
-
-
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Customer</th>
+      <th scope="col">title</th>
+      <th scope="col">type</th>
+      <th scope="col">Assignee</th>
+      <th scope="col">Created At</th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (task of taskList$ | async; track task.title) {
+        <tr>
+          <td>
+            <a [routerLink]="['/tasks', task.taskId]">
+              <ngb-highlight [result]="task.taskId" [term]="filter.value"/>
+            </a>
+          </td>
+          <td>
+            @if (task.additionalInfo.customer) {
+              <ngb-highlight [result]="task.additionalInfo.customer.Name" [term]="filter.value"/>
+            }
+          </td>
+          <td>
+            <ngb-highlight [result]="task.title" [term]="filter.value"/>
+          </td>
+          <td>
+            type
+          </td>
+          <td>
+            <ngb-highlight [result]="task.assignee" [term]="filter.value"/>
+          </td>
+          <td>
+            <ngb-highlight [result]="task.createdAt" [term]="filter.value"/>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
 
 </div>

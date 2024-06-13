@@ -4,13 +4,11 @@ import {TaskService} from "../service/task.service";
 import {TaskDto} from "../task-dto";
 import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
-import {CustomerCardComponent} from "../customer-card/customer-card.component";
-import {ICompleteTaskEvent} from "../ICompleteTaskEvent";
 
 @Component({
   selector: 'app-manual-worthiness-check-task',
   standalone: true,
-  imports: [FormsModule, CustomerCardComponent],
+  imports: [FormsModule],
   templateUrl: './manual-worthiness-check-task.component.html',
   styleUrl: './manual-worthiness-check-task.component.scss'
 })
@@ -39,22 +37,25 @@ export class ManualWorthinessCheckTaskComponent implements OnDestroy {
   }
 
   complete() {
-    this.checkBoxValue();
-    let completeTask: ICompleteTaskEvent = {
-      taskId: this.task.taskId,
-      aggregateId: this.task.aggregateId,
-      manualCreditCheckOutcome: this.creditCheckOutcome,
-      manualRiskAssessmentOutcome: null,
-    }
-    this.subscription$.push(
-      this.taskService.complete(completeTask, this.task.url, this.task.completeEndpoint).subscribe({
-        next: value => {
-          this.router.navigate(['/task-list']).then();
-        },
-        error: err => {}
-      })
-    )
+    // this.checkBoxValue();
+    // let completeTask: CompleteTaskEvent = {
+    //   taskId: this.task.taskId,
+    //   aggregateId: this.task.aggregateId,
+    //   manualCreditCheckOutcome: this.creditCheckOutcome,
+    //   manualRiskAssessmentOutcome: null,
+    // }
+    // this.subscription$.push(
+    //   this.taskService.complete(completeTask, this.task.url, this.task.completeEndpoint).subscribe({
+    //     next: value => {
+    //       this.router.navigate(['/task-list']).then();
+    //     },
+    //     error: err => {}
+    //   })
+    // )
   }
 
 
+  showChecked(event) {
+   console.log(this.isChecked);
+  }
 }

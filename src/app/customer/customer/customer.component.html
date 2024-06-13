@@ -16,18 +16,18 @@
       </div>
       <div class="row">
         <div class="col">
-          Gender:
-        </div>
-        <div class="col">
-          {{ customer.gender }}
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
           Telephon:
         </div>
         <div class="col">
           {{ customer.phoneNumber }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          Gender:
+        </div>
+        <div class="col">
+          {{ customer.gender }}
         </div>
       </div>
       <div class="row">
@@ -55,7 +55,44 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 mt-2">
+      <h4>Insurances</h4>
+      @for (insurance of customer.insurances; track insurance) {
+        <div class="row">
+          <div class="row">
+            <div class="col-3">
+              Number:
+            </div>
+            <div class="col-9">
+              {{ insurance.insuranceNumber }}
+            </div>
+          </div>
+          <div class="col-3">
+            Name:
+          </div>
+          <div class="col-9">
+            {{ insurance.name }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            Type:
+          </div>
+          <div class="col-9">
+            {{ insurance.insuranceType }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            Summe:
+          </div>
+          <div class="col-9">
+            {{ insurance.insuranceSum }}
+          </div>
+        </div>
+      }
+    </div>
+    <div class="col-md-4 mt-4">
       <div class="row">
         New Insurance? <br>
         <div class="form-check">

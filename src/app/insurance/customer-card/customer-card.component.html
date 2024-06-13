@@ -1,5 +1,5 @@
 <div class="row pt-3">
-  <div class="col-md-6">
+  <div class="col-md-12">
     <div class="card">
       <div class="card-header">
         Kunde
@@ -10,7 +10,7 @@
             Name:
           </div>
           <div class="col">
-            {{ additionalInfo.customer }}
+            {{ customer.firstname + ' ' + customer.lastname }}
           </div>
         </div>
         <div class="row">
@@ -18,7 +18,7 @@
             Email:
           </div>
           <div class="col">
-            {{ additionalInfo.customerEmail }}
+            {{ customer.email }}
           </div>
         </div>
         <div class="row">
@@ -26,7 +26,7 @@
             Telephon:
           </div>
           <div class="col">
-            {{ additionalInfo.customerPhoneNumber }}
+            {{ customer.phoneNumber }}
           </div>
         </div>
         <div class="row">
@@ -34,7 +34,7 @@
             Geschlecht:
           </div>
           <div class="col">
-            {{ additionalInfo.customerGender }}
+            {{ customer.gender }}
           </div>
         </div>
         <div class="row">
@@ -42,7 +42,31 @@
             Geburtstag:
           </div>
           <div class="col">
-            {{ additionalInfo.customerDateOfBirth }}
+            {{ customer.dateOfBirth }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            Straße:
+          </div>
+          <div class="col">
+            {{ customer.street }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            Stadt:
+          </div>
+          <div class="col">
+            {{ customer.zipCode + ' ' + customer.city }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            Land:
+          </div>
+          <div class="col">
+            {{ customer.country }}
           </div>
         </div>
       </div>

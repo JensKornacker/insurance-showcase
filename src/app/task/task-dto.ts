@@ -1,3 +1,5 @@
+import {TaskConfig} from "./task-config";
+
 export type Variable = {
   name: string;
   value: string;
@@ -24,5 +26,8 @@ export interface TaskDto {
   taskDefinitionId?: string;
   additionalInfo: any;
   completeEndpoint: string;
-  aggregateId: string,
+  aggregateId: string;
+  config: any;
+  configData: TaskConfig;
+  taskDefinition: string;
 }

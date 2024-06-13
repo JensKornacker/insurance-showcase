@@ -1,3 +1,5 @@
+import {Insurance} from "../insurance/insurance";
+
 export interface Customer {
   id?: string;
   gender?: string;
@@ -11,4 +13,5 @@ export interface Customer {
   country?: string;
   customerNumber?: number;
   phoneNumber?: string;
+  insurances?: Insurance[];
 }
