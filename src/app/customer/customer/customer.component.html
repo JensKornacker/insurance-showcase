@@ -1,109 +1,130 @@
-@defer {
+@if (customer === undefined) {
+  <p aria-hidden="true" class="placeholder-wave">
+    <span class="placeholder col-8 placeholder-lg"></span>
+  </p>
+  <p aria-hidden="true" class="placeholder-glow">
+    <span class="placeholder col-8 placeholder-lg"></span>
+  </p>
+
+} @else {
   <div class="row">
     <div class="col-md-4">
-      <div class="row">
-        <div class="col-md-12">
-          <h3>{{ customer.firstname + ' ' + customer.lastname }}</h3>
-        </div>
-      </div>
-      <div class="row pt-3">
-        <div class="col">
-          Geburtstag:
-        </div>
-        <div class="col">
-          {{ customer.dateOfBirth }}
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          Telephon:
-        </div>
-        <div class="col">
-          {{ customer.phoneNumber }}
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          Gender:
-        </div>
-        <div class="col">
-          {{ customer.gender }}
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          Straße:
-        </div>
-        <div class="col">
-          {{ customer.street }}
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          Stadt:
-        </div>
-        <div class="col">
-          {{ customer.zipCode + ' ' + customer.city }}
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          Land:
-        </div>
-        <div class="col">
-          {{ customer.country }}
+      <h3>{{ customer.firstname + ' ' + customer.lastname }}</h3>
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+
+            </div>
+          </div>
+          <div class="row pt-3">
+            <div class="col">
+              Geburtstag:
+            </div>
+            <div class="col">
+              {{ customer.dateOfBirth }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              Telephon:
+            </div>
+            <div class="col">
+              {{ customer.phoneNumber }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              Gender:
+            </div>
+            <div class="col">
+              {{ customer.gender }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              Straße:
+            </div>
+            <div class="col">
+              {{ customer.street }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              Stadt:
+            </div>
+            <div class="col">
+              {{ customer.zipCode + ' ' + customer.city }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              Land:
+            </div>
+            <div class="col">
+              {{ customer.country }}
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-md-4 mt-2">
+    <div class="col-md-4">
       <h4>Insurances</h4>
       @for (insurance of customer.insurances; track insurance) {
-        <div class="row">
-          <div class="row">
-            <div class="col-3">
-              Number:
+        <div class="pt-1">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-3">
+                  Number:
+                </div>
+                <div class="col-9">
+                  {{ insurance.insuranceNumber }}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  Name:
+                </div>
+                <div class="col-9">
+                  {{ insurance.name }}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  Type:
+                </div>
+                <div class="col-9">
+                  {{ insurance.insuranceType }}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  Summe:
+                </div>
+                <div class="col-9">
+                  {{ insurance.insuranceSum }}
+                </div>
+              </div>
             </div>
-            <div class="col-9">
-              {{ insurance.insuranceNumber }}
-            </div>
-          </div>
-          <div class="col-3">
-            Name:
-          </div>
-          <div class="col-9">
-            {{ insurance.name }}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-3">
-            Type:
-          </div>
-          <div class="col-9">
-            {{ insurance.insuranceType }}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-3">
-            Summe:
-          </div>
-          <div class="col-9">
-            {{ insurance.insuranceSum }}
           </div>
         </div>
       }
     </div>
+  </div>
+  <div class="row">
     <div class="col-md-4 mt-4">
-      <div class="row">
-        New Insurance? <br>
-        <div class="form-check">
-          <input id="new_insurance"
-                 type="checkbox"
-                 [(ngModel)]="isChecked"
-                 class="form-check-input">
-          <label class="form-check-label" for="new_insurance">
-            <b>{{ isChecked ? 'yes' : 'no' }}</b>
-          </label>
-        </div>
+      <p>
+        <b>New Insurance?</b>
+      </p>
+      <div class="form-check">
+        <input id="new_insurance"
+               type="checkbox"
+               [(ngModel)]="isChecked"
+               class="btn-check">
+        <label class="btn btn-sm btn-outline-info" for="new_insurance">
+          <b>{{ isChecked ? 'no' : 'yes' }}</b>
+        </label>
       </div>
       @if (isChecked) {
         <div class="row pt-5">
@@ -128,6 +149,4 @@
       }
     </div>
   </div>
-} @placeholder {
-  ... Loading
 }

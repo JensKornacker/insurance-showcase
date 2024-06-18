@@ -5,6 +5,7 @@ import {TaskDto} from "../task-dto";
 import {environment} from "../../../environments/environment";
 import {IAddAssignee} from "../task.component";
 import {CompleteTaskEvent} from "../CompleteTaskEvent";
+import {TaskListDto} from "../task-list-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,8 @@ export class TaskService {
     private http: HttpClient
   ) { }
 
-  getTaskList(): Observable<TaskDto[]> {
-    return this.http.get<TaskDto[]>(this.task_api + '/tasks');
+  getTaskList(): Observable<TaskListDto[]> {
+    return this.http.get<TaskListDto[]>(this.task_api + '/tasks');
   }
 
   getTask(taskId: string): Observable<TaskDto> {

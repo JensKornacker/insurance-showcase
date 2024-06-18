@@ -3,15 +3,11 @@
 
     <a [routerLink]="['/task-list']" [routerLinkActive]="['router-link-active']" class="list-group-item">
       <fa-icon [icon]="faListCheck"></fa-icon>&nbsp;
-      <span>{{ 'Aufgaben' }}</span>
+      <span>{{ 'Tasks' }}</span>
     </a>
     <a [routerLink]="['/workflow-list']" [routerLinkActive]="['router-link-active']" class="list-group-item">
       <fa-icon [icon]="faNetworkWired"></fa-icon>&nbsp;
-      <span>{{ 'Vorgänge' }}</span>
-    </a>
-    <a [routerLink]="['/integrate-react']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-      <fa-icon [icon]="faPowerOff"></fa-icon>&nbsp;
-      <span>{{ 'React' }}</span>
+      <span>{{ 'Workflows' }}</span>
     </a>
     <a [routerLink]="['/create-customer']" [routerLinkActive]="['router-link-active']" class="list-group-item">
       <fa-icon [icon]="faPersonCircleMinus" />&nbsp;

@@ -40,7 +40,7 @@ export class TaskComponent implements OnInit, OnDestroy {
   userTaskId: string;
   task: TaskDto;
   additionalInfo: Map<string, Map<string, string>>;
-  users: string[] = ["Jens Kornacker", "Gerhard Wieshammer", "Andi Gegendorfer"]
+  users: string[] = ["Jens Kornacker", "Gerhard Wieshammer", "Andi Gegendorfer", "Christoph Kösner"]
   additionalMap: Map<string, any> = new Map();
   data: any;
   configData: TaskConfig;

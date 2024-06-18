@@ -1,0 +1,12 @@
+export interface TaskListDto  {
+   taskId: string;
+   title: string;
+   description: string;
+   moduleId: string;
+   customerName: string;
+   aggregateId: string;
+   assignee: string;
+   createdAt: string;
+   status: string;
+   taskDefinition: string;
+}

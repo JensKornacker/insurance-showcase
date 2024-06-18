@@ -33,13 +33,14 @@
       </div>
 
       <div class="row pt-5">
-        <div class="col">
+        <div class="col-md-8">
           <app-task-form [data]="data"
                          [config]="configData"
                          (formValue)="deliverFormValue=$event"/>
         </div>
       </div>
     </div>
+
 
 
     <div class="col-md-3">
@@ -80,10 +81,27 @@
               <small>{{ task.createdAt | date }}</small>
             </div>
           </div>
+          <div class="row pt-3">
+            <div class="col">
+              <span class="text-secondary"><b>Task Definition</b></span> <br>
+              <small>{{ task.taskDefinition }}</small>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
+<!--  <p>
+    {{configData | json}}
+  </p>
+  <p>
+    {{additionalInfo | json}}
+  </p>
+  <p>
+    {{data | json}}
+  </p>-->
+
   <div class="row pt-3">
     <div class="col-md-4">
       <button class="btn btn-sm btn-outline-info" (click)="complete()" [disabled]="deliverFormValue === undefined">Complete Task</button>

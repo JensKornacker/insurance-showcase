@@ -7,7 +7,7 @@ import {SidebarComponent} from "./layout/layout/layout/sidebar/sidebar.component
 import {HeaderComponent} from "./layout/layout/layout/header/header.component";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {HomeComponent} from './home/home.component';
-import {NgOptimizedImage} from "@angular/common";
+import {DecimalPipe, NgOptimizedImage} from "@angular/common";
 import {WorkflowComponent} from "./workflow/workflow.component";
 import {HttpClientModule} from "@angular/common/http";
 import {WorkflowListComponent} from './workflow/workflow-list/workflow-list.component';
@@ -28,7 +28,7 @@ import {WorkflowListComponent} from './workflow/workflow-list/workflow-list.comp
     NgOptimizedImage,
     HttpClientModule
   ],
-  providers: [],
+  providers: [DecimalPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
