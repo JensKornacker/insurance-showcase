@@ -6,4 +6,6 @@ export interface RequestInsurance {
   sufficientIncome: boolean;
   insuranceCoverage?: string;
   insuranceSum?: string;
+  paymentSchedule: string;
+  amount: number;
 }

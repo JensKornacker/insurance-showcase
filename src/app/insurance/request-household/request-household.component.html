@@ -1,22 +1,32 @@
 <h3>Neue Hausratsversicherung</h3>
 <div class="row pt-3">
-  <div class="col-md-6">
+  <div class="col-md-12">
     <div class="card">
       <div class="card-body">
-        <div class="row">
-          <div class="col-md-4">
-            Kunde:
+        @if (customer === undefined) {
+          <p class="card-text placeholder-glow">
+            <span class="placeholder col-7"></span>
+            <span class="placeholder col-4"></span>
+            <span class="placeholder col-4"></span>
+            <span class="placeholder col-6"></span>
+            <span class="placeholder col-8"></span>
+          </p>
+        } @else {
+          <div class="row">
+            <div class="col-md-2">
+              Kunde:
+            </div>
+            <div class="col-md-4">
+              {{ customer.firstname + ' ' + customer.lastname }} <br>
+              {{ customer.dateOfBirth }} <br>
+              {{ customer.gender }} <br>
+              {{ customer.customerNumber }} <br>
+              {{ customer.street }} <br>
+              {{ customer.zipCode + ' ' + customer.city }} <br>
+              {{ customer.country }}
+            </div>
           </div>
-          <div class="col-md-6">
-            {{ customer.firstname + ' ' + customer.lastname }} <br>
-            {{ customer.dateOfBirth }} <br>
-            {{ customer.gender }} <br>
-            {{ customer.customerNumber }} <br>
-            {{ customer.street }} <br>
-            {{ customer.zipCode + ' ' + customer.city }} <br>
-            {{ customer.country }}
-          </div>
-        </div>
+        }
       </div>
     </div>
   </div>
@@ -42,6 +52,25 @@
 
         <div class="row pt-2">
           <div class="col-md-4">
+            Versicherungsschutz:
+          </div>
+          <div class="col-md-6">
+            @for (cover of coverings; track cover) {
+              <div class="row">
+                <div class="col">
+                  {{ cover }}
+                </div>
+                <div class="col">
+                  <input type="radio" [value]="cover" name="coverings" [(ngModel)]="chosenCoverage"
+                         (change)="setPaymentSchedule()">
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+
+        <div class="row pt-2">
+          <div class="col-md-4">
             monatliches Einkommen:
           </div>
           <div class="col-md-2">
@@ -58,48 +87,88 @@
       </div>
     </div>
   </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        Vertragsbedingungen
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
 
-
-  <div class="row pt-3">
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header">
-          Risikozuschläge
-        </div>
-        <div class="card-body">
-          <div class="row pt-2">
-            <div class="col-md-4">
-              Vermurungsgefahr:
-            </div>
-            <div class="col-md-2">
-              <input id="mudslide" type="checkbox" class="form-check-input" [(ngModel)]="mudslide_risk">
-            </div>
-            <div class="col-md-6">
-              @if (mudslide_risk) {
-                50.-€
-              }
-            </div>
           </div>
-          <div class="row pt-2">
-            <div class="col-md-4">
-              Hochwassergefahr
-            </div>
-            <div class="col-md-2">
-              <input id="flood" type="checkbox" class="form-check-input" [(ngModel)]="flood_risk">
-            </div>
-            <div class="col-md-6">
-              @if (flood_risk) {
-                100.-
-              }
-            </div>
+          <div class="col">
+            {{ chosenCoverage }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            Zahlweise:
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            @for (schedule of mapScheduleOfPayments | keyvalue; track schedule) {
+              <div class="row">
+                <div class="col-2">
+                  <input type="radio" [value]="schedule" name="paymentSchedule" [(ngModel)]="paymentSchedule">
+                </div>
+                <div class="col-6">
+                  {{ schedule.key }}
+                </div>
+                <div class="col-4">
+                  {{ '€ ' + schedule.value + '.-' }}
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+        {{ paymentSchedule | json }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row pt-3">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        Risikozuschläge
+      </div>
+      <div class="card-body">
+        <div class="row pt-2">
+          <div class="col-md-4">
+            Vermurungsgefahr:
+          </div>
+          <div class="col-md-2">
+            <input id="mudslide" type="checkbox" class="form-check-input" [(ngModel)]="mudslide_risk">
+          </div>
+          <div class="col-md-6">
+            @if (mudslide_risk) {
+              50.-€
+            }
+          </div>
+        </div>
+        <div class="row pt-2">
+          <div class="col-md-4">
+            Hochwassergefahr
+          </div>
+          <div class="col-md-2">
+            <input id="flood" type="checkbox" class="form-check-input" [(ngModel)]="flood_risk">
+          </div>
+          <div class="col-md-6">
+            @if (flood_risk) {
+              100.-
+            }
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row pt-3">
-    <div class="col-md-6">
-      <button class="btn btn-sm btn-outline-info" (click)="request_insurance()">request insurance</button>
-    </div>
+</div>
+<div class="row pt-3">
+  <div class="col-md-6">
+    <button class="btn btn-sm btn-outline-info" (click)="request_insurance()">request insurance</button>
   </div>
 </div>
+

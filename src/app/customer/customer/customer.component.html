@@ -106,6 +106,22 @@
                   {{ insurance.insuranceSum }}
                 </div>
               </div>
+              <div class="row">
+                <div class="col-3">
+                  Zahlweise:
+                </div>
+                <div class="col-9">
+                  {{ insurance.paymentSchedule }}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  Prämie:
+                </div>
+                <div class="col-9">
+                  {{ "€ " + insurance.amount + ".-" }}
+                </div>
+              </div>
             </div>
           </div>
         </div>

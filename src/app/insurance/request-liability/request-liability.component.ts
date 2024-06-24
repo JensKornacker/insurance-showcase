@@ -80,6 +80,8 @@ export class RequestLiabilityComponent implements OnInit, OnDestroy {
       sufficientIncome: this.sufficientIncome,
       insuranceCoverage: this.chosenCoverage,
       insuranceSum: this.insuranceSum,
+      paymentSchedule: null,
+      amount: null,
     }
     this.subscription.push(
       this.customerService.requestNewInsurance(requestInsurance).subscribe({

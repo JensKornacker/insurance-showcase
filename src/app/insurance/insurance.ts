@@ -7,4 +7,6 @@ export interface Insurance {
   createdAt: string;
   updatedAt?: string;
   insuranceSum?: string;
+  paymentSchedule: string;
+  amount: number;
 }
