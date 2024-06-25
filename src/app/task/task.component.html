@@ -39,9 +39,14 @@
                          (formValue)="deliverFormValue=$event"/>
         </div>
       </div>
+
+      <div class="row pt-5">
+        <div class="col-md-4">
+          <button class="btn btn-sm btn-outline-info" (click)="complete()" [disabled]="deliverFormValue === undefined">Complete Task</button>
+        </div>
+      </div>
+
     </div>
-
-
 
     <div class="col-md-3">
       <div class="card">
@@ -65,20 +70,8 @@
           <div class="row">
             <div class="col">
               <a [routerLink]="['#']">{{ task.assignee }}</a> <br>
-              <div ngbDropdown class="d-inline-block">
-                <button type="button" class="btn btn-sm btn-close-white" id="dropdownBasic1" ngbDropdownToggle>
-                  <small>+ Add Assignee</small>
-                </button>
-                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                  @for (user of users; track user) {
-                    <button ngbDropdownItem
-                            class="dropdown-style"
-                            (click)="addAssignee(user)">
-                      {{ user }}
-                    </button>
-                  }
-                </div>
-              </div>
+              <app-add-assignee [taskId]="task.taskId"
+                                (formValue)="showNewAssignee($event)" />
             </div>
           </div>
           <div class="row pt-4">
@@ -126,9 +119,5 @@
     {{data | json}}
   </p>-->
 
-  <div class="row pt-3">
-    <div class="col-md-4">
-      <button class="btn btn-sm btn-outline-info" (click)="complete()" [disabled]="deliverFormValue === undefined">Complete Task</button>
-    </div>
-  </div>
+
 }

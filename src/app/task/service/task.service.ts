@@ -32,8 +32,8 @@ export class TaskService {
     return this.http.post(url + endpointUrl, completeTask, {responseType: 'text'});
   }
 
-  addAssignee(addAssignee: IAddAssignee): Observable<TaskDto> {
-    return this.http.post<TaskDto>(this.task_api + '/tasks/add-assignee', addAssignee);
+  addAssignee(addAssignee: IAddAssignee): Observable<IAddAssignee> {
+    return this.http.post<IAddAssignee>(this.task_api + '/tasks/add-assignee', addAssignee);
   }
 
 }

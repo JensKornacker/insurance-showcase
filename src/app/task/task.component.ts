@@ -16,6 +16,7 @@ import {NgbDropdown, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle} from "
 import {TaskFormComponent} from "./task-form/task-form.component";
 import {TaskConfig} from "./task-config";
 import {CompleteTaskEvent} from "./CompleteTaskEvent";
+import {AddAssigneeComponent} from "./add-assignee/add-assignee.component";
 
 export interface IAddAssignee {
   username: string;
@@ -26,7 +27,7 @@ export interface IAddAssignee {
   standalone: true,
   selector: 'app-task',
   templateUrl: './task.component.html',
-  imports: [FormsModule, JsonPipe, KeyValuePipe, NgForOf, ManualWorthinessCheckTaskComponent, ManualRiskAssessmentCheckTaskComponent, NgbDropdown, NgbDropdownMenu, NgbDropdownItem, NgbDropdownToggle, DatePipe, RouterLink, TaskFormComponent],
+  imports: [FormsModule, JsonPipe, KeyValuePipe, NgForOf, ManualWorthinessCheckTaskComponent, ManualRiskAssessmentCheckTaskComponent, NgbDropdown, NgbDropdownMenu, NgbDropdownItem, NgbDropdownToggle, DatePipe, RouterLink, TaskFormComponent, AddAssigneeComponent],
   styleUrls: ['./task.component.scss']
 })
 export class TaskComponent implements OnInit, OnDestroy {
@@ -47,6 +48,7 @@ export class TaskComponent implements OnInit, OnDestroy {
   completeObject: object;
 
   deliverFormValue: object;
+  deliverAssigneeValue: IAddAssignee;
 
 
 
@@ -74,29 +76,11 @@ export class TaskComponent implements OnInit, OnDestroy {
         this.additionalInfo = this.task.additionalInfo;
         this.data = this.task.config;
         this.configData = this.task.configData;
-        console.log(this.additionalMap);
-        console.log(this.data);
-        console.log(this.configData);
       },
       error: err => {
         console.log('error', err);
       }
     })
-  }
-
-  addAssignee(username: string) {
-    let addAssignee: IAddAssignee = {
-      username: username,
-      taskId: this.task.taskId,
-    }
-    this.subscription$.push(
-      this.taskService.addAssignee(addAssignee).subscribe({
-        next: value => {
-          this.task = value;
-        },
-        error: err => {}
-      })
-    )
   }
 
   showFormValue(b: object) {
@@ -124,4 +108,7 @@ export class TaskComponent implements OnInit, OnDestroy {
     )
   }
 
+  showNewAssignee(assignee: IAddAssignee) {
+    this.task.assignee = assignee.username;
+  }
 }

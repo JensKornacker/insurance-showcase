@@ -1,0 +1,15 @@
+
+<div ngbDropdown class="d-inline-block">
+  <button type="button" class="btn btn-sm btn-close-white" id="dropdownBasic1" ngbDropdownToggle>
+    <small>+ Add Assignee</small>
+  </button>
+  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+    @for (user of users; track user) {
+      <button ngbDropdownItem
+              class="dropdown-style"
+              (click)="addAssignee(user)">
+        {{ user }}
+      </button>
+    }
+  </div>
+</div>
