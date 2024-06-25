@@ -19,10 +19,11 @@ import {RouterLink} from "@angular/router";
   styleUrl: './add-assignee.component.scss'
 })
 export class AddAssigneeComponent implements OnDestroy {
-  users: string[] = ["Jens Kornacker", "Gerhard Wieshammer", "Andi Gegendorfer", "Christoph Kösner"]
+  users: string[] = ["Beate Huber-Holkovics", "Verena Fitzinger", "Jens Kornacker", "Gerhard Wieshammer", "Andi Gegendorfer", "Christoph Kösner", "Dragana Sunaric", "Marlies Rieder", "Leo Li"]
   private subscription$: Subscription[] = [];
   private taskService = inject(TaskService);
   @Input() taskId: string;
+  @Input() label: string = "Add Assignee";
   @Output() formValue = new EventEmitter<IAddAssignee>();
 
   addAssignee(username: string) {

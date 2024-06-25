@@ -37,14 +37,14 @@ function sort(tasks: TaskListDto[], column: SortColumn, direction: string): Task
 
 function matches(task: TaskListDto, term: string, pipe: PipeTransform) {
   if (task.assignee === null) {
-    task.assignee = "";
+    task.assignee = "<" + "none" + ">";
   }
   return (
-    task.taskId.toLowerCase().includes(term.toLowerCase())       ||
+    task.taskId.toLowerCase().includes(term.toLowerCase()) ||
     task.customerName.toLowerCase().includes(term.toLowerCase()) ||
-    task.title.toLowerCase().includes(term.toLowerCase())        ||
-    task.type.toLowerCase().includes(term.toLowerCase())         ||
-    task.assignee.toLowerCase().includes(term.toLowerCase())     ||
+    task.title.toLowerCase().includes(term.toLowerCase()) ||
+    task.type.toLowerCase().includes(term.toLowerCase()) ||
+    task.assignee.toLowerCase().includes(term.toLowerCase()) ||
     task.createdAt.toLowerCase().includes(term.toLowerCase())
   );
 }
@@ -80,15 +80,13 @@ export class TaskListService implements OnDestroy {
         next: value => {
           this.taskList = value;
           // this.getSearchMethod();
-          this._search$
-              .pipe(
-                tap(() => this._loading$.next(true)),
-                debounceTime(200),
-                switchMap(() => this._search()),
-                delay(200),
-                tap(() => this._loading$.next(false)),
-              )
-              .subscribe((result) => {
+          this._search$.pipe(
+            tap(() => this._loading$.next(true)),
+            debounceTime(200),
+            switchMap(() => this._search()),
+            delay(200),
+            tap(() => this._loading$.next(false)),
+          ).subscribe((result) => {
                 this._tasks$.next(result.tasks);
                 this._total$.next(result.total);
               });
@@ -104,17 +102,6 @@ export class TaskListService implements OnDestroy {
     this.subscription$.forEach((subscription: Subscription) => {
       subscription.unsubscribe();
     })
-  }
-
-  getTaskList() {
-    this.subscription$.push(
-      this.taskService.getTaskList().subscribe({
-        next: value => {
-          this.taskList = value;
-          // this.getSearchMethod();
-        }
-      })
-    )
   }
 
   get tasks$() {

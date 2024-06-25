@@ -18,6 +18,8 @@ import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgbHighlight, NgbPagination} from "@ng-bootstrap/ng-bootstrap";
 import {TaskListDto} from "../task-list-dto";
 import {TaskListService} from "./task-list.service";
+import {AddAssigneeComponent} from "../add-assignee/add-assignee.component";
+import {IAddAssignee} from "../task.component";
 
 export interface ITaskRequest {
   state: string;
@@ -58,7 +60,7 @@ export class NgbdSortableHeader {
 @Component({
   standalone: true,
   selector: 'app-task-list',
-  imports: [CommonModule, RouterLink, DecimalPipe, ReactiveFormsModule, NgbHighlight, NgbdSortableHeader, FormsModule, NgbPagination],
+  imports: [CommonModule, RouterLink, DecimalPipe, ReactiveFormsModule, NgbHighlight, NgbdSortableHeader, FormsModule, NgbPagination, AddAssigneeComponent],
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.scss'],
 })
@@ -88,40 +90,29 @@ export class TaskListComponent implements OnInit, OnDestroy {
     console.log(this.taskList$);
   }
 
-  getSearchMethod() {
-    this.taskList$ = this.filter.valueChanges.pipe(
-      startWith(''),
-      map((text) => this.search(text))
-    )
-  }
+  // getSearchMethod() {
+  //   this.taskList$ = this.filter.valueChanges.pipe(
+  //     startWith(''),
+  //     map((text) => this.search(text))
+  //   )
+  // }
 
-  getTaskList() {
-    this.subscription$.push(
-      this.taskService.getTaskList().subscribe({
-        next: value => {
-          this.taskList = value;
-          this.getSearchMethod();
-        }
-      })
-    )
-  }
-
-  search(text: string): TaskListDto[] {
-    return this.taskList.filter((task) => {
-      if (task.assignee === undefined || task.assignee === null) {
-        task.assignee = "";
-      }
-      const term = text.toLowerCase();
-      return (
-        task.taskId.toLowerCase().includes(term)       ||
-        task.customerName.toLowerCase().includes(term) ||
-        task.title.toLowerCase().includes(term)        ||
-        task.type.toLowerCase().includes(term)         ||
-        task.assignee.toLowerCase().includes(term)     ||
-        task.createdAt.toLowerCase().includes(term)
-      );
-    });
-  }
+  // search(text: string): TaskListDto[] {
+  //   return this.taskList.filter((task) => {
+  //     if (task.assignee === undefined || task.assignee === null) {
+  //       task.assignee = "&lt" + "none" + "&gt";
+  //     }
+  //     const term = text.toLowerCase();
+  //     return (
+  //       task.taskId.toLowerCase().includes(term)       ||
+  //       task.customerName.toLowerCase().includes(term) ||
+  //       task.title.toLowerCase().includes(term)        ||
+  //       task.type.toLowerCase().includes(term)         ||
+  //       task.assignee.toLowerCase().includes(term)     ||
+  //       task.createdAt.toLowerCase().includes(term)
+  //     );
+  //   });
+  // }
 
   onSort({column, direction}: SortEvent) {
     // resetting other headers
@@ -151,4 +142,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
     // }
   }
 
+  reloadList(event: IAddAssignee) {
+    console.log(event);
+  }
 }

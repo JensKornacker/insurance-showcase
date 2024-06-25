@@ -1,7 +1,7 @@
 
-<div ngbDropdown class="d-inline-block">
+<div ngbDropdown placement="left" class="d-inline-block">
   <button type="button" class="btn btn-sm btn-close-white" id="dropdownBasic1" ngbDropdownToggle>
-    <small>+ Add Assignee</small>
+    <small>+ {{ label }}</small>
   </button>
   <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
     @for (user of users; track user) {

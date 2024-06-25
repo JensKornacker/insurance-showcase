@@ -32,7 +32,7 @@
     </tr>
     </thead>
     <tbody>
-      @for (task of taskList$ | async; track task.title) {
+      @for (task of taskList$ | async; track task.taskId) {
         <tr>
           <td>
             <a [routerLink]="['/tasks', task.taskId]">
@@ -50,7 +50,8 @@
             <ngb-highlight [result]="task.type" [term]="filter.value" />
           </td>
           <td>
-            <ngb-highlight [result]="task.assignee" [term]="filter.value"/>
+                <ngb-highlight [result]="task.assignee" [term]="filter.value"/>
+                <app-add-assignee [taskId]="task.taskId" [label]="'add'" (formValue)="reloadList($event)" />
           </td>
           <td>
             <ngb-highlight [result]="task.createdAt" [term]="filter.value"/>
