@@ -9,4 +9,5 @@ export interface TaskListDto  {
    createdAt: string;
    status: string;
    taskDefinition: string;
+   type: string;
 }

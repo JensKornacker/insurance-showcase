@@ -26,8 +26,10 @@ export interface TaskDto {
   taskDefinitionId?: string;
   additionalInfo: any;
   completeEndpoint: string;
+  status: string;
   aggregateId: string;
   config: any;
   configData: TaskConfig;
   taskDefinition: string;
+  type: string;
 }

@@ -26,7 +26,7 @@ export interface ITaskRequest {
 
 export type SortColumn = keyof TaskListDto | '';
 export type SortDirection = 'asc' | 'desc' | '';
-const rotate: { [key: string]: SortDirection } = { asc: 'desc', desc: '', '': 'asc' };
+const rotate: { [key: string]: SortDirection } = {asc: 'desc', desc: '', '': 'asc'};
 
 const compare = (v1: string | number, v2: string | number) => (v1 < v2 ? -1 : v1 > v2 ? 1 : 0);
 
@@ -51,7 +51,7 @@ export class NgbdSortableHeader {
 
   rotate() {
     this.direction = rotate[this.direction];
-    this.sort.emit({ column: this.sortable, direction: this.direction });
+    this.sort.emit({column: this.sortable, direction: this.direction});
   }
 }
 
@@ -113,16 +113,17 @@ export class TaskListComponent implements OnInit, OnDestroy {
       }
       const term = text.toLowerCase();
       return (
-        task.taskId.toLowerCase().includes(term) ||
+        task.taskId.toLowerCase().includes(term)       ||
         task.customerName.toLowerCase().includes(term) ||
-        task.title.toLowerCase().includes(term) ||
-        task.assignee.toLowerCase().includes(term) ||
+        task.title.toLowerCase().includes(term)        ||
+        task.type.toLowerCase().includes(term)         ||
+        task.assignee.toLowerCase().includes(term)     ||
         task.createdAt.toLowerCase().includes(term)
       );
     });
   }
 
-  onSort({ column, direction }: SortEvent) {
+  onSort({column, direction}: SortEvent) {
     // resetting other headers
 
     this.headers.forEach((header) => {

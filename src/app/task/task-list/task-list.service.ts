@@ -3,7 +3,7 @@ import {inject, Injectable, OnDestroy, Pipe, PipeTransform} from '@angular/core'
 
 import {BehaviorSubject, debounceTime, delay, Observable, of, Subject, Subscription, switchMap, tap} from 'rxjs';
 
-import { DecimalPipe } from '@angular/common';
+import {DecimalPipe} from '@angular/common';
 
 import {TaskListDto} from "../task-list-dto";
 import {TaskService} from "../service/task.service";
@@ -40,10 +40,11 @@ function matches(task: TaskListDto, term: string, pipe: PipeTransform) {
     task.assignee = "";
   }
   return (
-    task.taskId.toLowerCase().includes(term.toLowerCase()) ||
+    task.taskId.toLowerCase().includes(term.toLowerCase())       ||
     task.customerName.toLowerCase().includes(term.toLowerCase()) ||
-    task.title.toLowerCase().includes(term.toLowerCase()) ||
-    task.assignee.toLowerCase().includes(term.toLowerCase()) ||
+    task.title.toLowerCase().includes(term.toLowerCase())        ||
+    task.type.toLowerCase().includes(term.toLowerCase())         ||
+    task.assignee.toLowerCase().includes(term.toLowerCase())     ||
     task.createdAt.toLowerCase().includes(term.toLowerCase())
   );
 }
@@ -72,7 +73,7 @@ export class TaskListService implements OnDestroy {
 
   constructor(
     private pipe: DecimalPipe
-    ) {
+  ) {
     // this.getTaskList();
     this.subscription$.push(
       this.taskService.getTaskList().subscribe({
@@ -119,36 +120,45 @@ export class TaskListService implements OnDestroy {
   get tasks$() {
     return this._tasks$.asObservable();
   }
+
   get total$() {
     return this._total$.asObservable();
   }
+
   get loading$() {
     return this._loading$.asObservable();
   }
+
   get page() {
     return this._state.page;
   }
+
   get pageSize() {
     return this._state.pageSize;
   }
+
   get searchTerm() {
     return this._state.searchTerm;
   }
 
   set page(page: number) {
-    this._set({ page });
+    this._set({page});
   }
+
   set pageSize(pageSize: number) {
-    this._set({ pageSize });
+    this._set({pageSize});
   }
+
   set searchTerm(searchTerm: string) {
-    this._set({ searchTerm });
+    this._set({searchTerm});
   }
+
   set sortColumn(sortColumn: SortColumn) {
-    this._set({ sortColumn });
+    this._set({sortColumn});
   }
+
   set sortDirection(sortDirection: SortDirection) {
-    this._set({ sortDirection });
+    this._set({sortDirection});
   }
 
   private _set(patch: Partial<State>) {
@@ -157,7 +167,7 @@ export class TaskListService implements OnDestroy {
   }
 
   private _search(): Observable<SearchResult> {
-    const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
+    const {sortColumn, sortDirection, pageSize, page, searchTerm} = this._state;
 
     // 1. sort
     let tasks = sort(this.taskList, sortColumn, sortDirection);
@@ -168,7 +178,7 @@ export class TaskListService implements OnDestroy {
 
     // 3. paginate
     tasks = tasks.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
-    return of({ tasks: tasks, total });
+    return of({tasks: tasks, total});
   }
 
 }
